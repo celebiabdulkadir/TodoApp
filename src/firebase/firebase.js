@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { setTodos } from "../store/todoSlicer";
-import { useDispatch } from "react-redux";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -10,10 +9,10 @@ import {
 import {
   addDoc,
   collection,
+  doc,
+  deleteDoc,
   getFirestore,
-  onSnapshot,
 } from "firebase/firestore";
-import { store } from "../store/store";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCOt6cJsqnzmDGxzlaEJZ-MTMs_m5qw5Hs",
@@ -32,10 +31,11 @@ export const addTodo = async (data) => {
   console.log(result);
   //   return result;
 };
+export const deleteTodo = async (id) => {
+  await deleteDoc(doc(db, "Todos", id));
+};
 
 const auth = getAuth();
-
-const user = auth.currentUser;
 
 export const register = async (email, password) => {
   try {

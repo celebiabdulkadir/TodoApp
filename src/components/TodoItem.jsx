@@ -1,15 +1,21 @@
 import React, { useState, useRef } from "react";
 // import { useDispatch } from "react-redux";
 // import { removeTodo } from "../store/todoSlicer";
-import { TiEdit, TiTrash, TiTick } from "react-icons/ti";
-import { FaStrikethrough, FaCheckCircle } from "react-icons/fa";
+import { TiEdit, TiTrash } from "react-icons/ti";
+import { FaCheckCircle } from "react-icons/fa";
+import { openModal } from "../store/modalSlicer";
+import { useDispatch } from "react-redux";
+import { setTodoId } from "../store/todoSlicer";
+import { ToastContainer, toast } from "react-toastify";
 
-function TodoItem({ todo, handleDelete, handleEdit, toggleComplete }) {
+function TodoItem({ todo, handleEdit, toggleComplete }) {
   const [newTitle, setNewTitle] = useState(todo.content);
   const inputRef = useRef();
+  const dispatch = useDispatch();
 
-  const removeTask = (id) => {
-    handleDelete(id);
+  const openRemoveModal = () => {
+    dispatch(openModal());
+    dispatch(setTodoId(todo));
   };
   const HandleKeyUp = (e) => {
     if (e.key === "Enter" && newTitle.length > 0 && todo.content !== newTitle) {
@@ -18,8 +24,21 @@ function TodoItem({ todo, handleDelete, handleEdit, toggleComplete }) {
     }
   };
   const handleEditAction = () => {
-    if (newTitle.length > 0 && todo.content !== newTitle)
+    if (newTitle.length > 0 && todo.content !== newTitle) {
       handleEdit(todo, newTitle);
+    } else {
+      toast("Please Change before update", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        type: "info",
+      });
+    }
   };
 
   const handleChange = (event) => {
@@ -61,13 +80,13 @@ function TodoItem({ todo, handleDelete, handleEdit, toggleComplete }) {
               ></input>
             </div>
           </div>
-          <div className="flex flex-row space-x-4">
+          <div className="flex flex-row space-x-4 sm:space-x-1">
             {" "}
             <div className="flex flex-end ">
               <button
                 className=" rounded justify-center flex align-center p-1 hover:bg-slate-400 hover:rounded"
                 onClick={() => {
-                  removeTask(todo.id);
+                  openRemoveModal();
                 }}
               >
                 <TiTrash style={{ color: "red" }} />

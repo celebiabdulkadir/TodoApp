@@ -12,7 +12,6 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import { info } from "autoprefixer";
 
 function TodoList() {
   const [todoList, setTodoList] = useState([]);
