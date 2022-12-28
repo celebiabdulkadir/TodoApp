@@ -54,7 +54,7 @@ function AddTodo() {
         ></input>
         <button
           type="submit"
-          className="bg-green-300 rounded p-2 my-1 hover:bg-green-500 hover:rounded hover:shadow-xl"
+          className="bg-green-300 rounded p-2 my-1 hover:bg-green-500 hover:rounded hover:shadow-xl hover:scale-110"
         >
           ADD
         </button>
