@@ -53,8 +53,8 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
 
   return (
     <>
-      <li className="flex flex-col wrap  w-full  py-1 px-1 mb-4 justify-between space-x-2  bg-white rounded ">
-        <div className="flex flex-row wrap  w-full  py-1 px-1 justify-between space-x-2  bg-white rounded ">
+      <li className=" hover:scale-110 flex flex-col wrap  w-full  py-1 px-1 mb-4 justify-between space-x-2  rounded drop-shadow-xl ">
+        <div className="flex flex-row wrap  w-full  py-1 px-1 justify-between space-x-2  bg-white rounded  ">
           {" "}
           <div className="flex flex-row justify-between">
             {" "}
@@ -63,7 +63,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
                 type="checkbox"
                 id="topping"
                 name="topping"
-                className="flex justify-center align-center"
+                className="flex justify-center align-center bg-white"
                 onClick={() => toggleComplete(todo)}
               />
             </div>
