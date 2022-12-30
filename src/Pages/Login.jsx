@@ -4,12 +4,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login as loginHandler } from "../store/authSlicer";
 import { useNavigate } from "react-router-dom";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import { toast } from "react-toastify";
 
 export default function Login() {
-  const auth = getAuth();
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const submitHandle = async (event) => {
@@ -40,7 +36,7 @@ export default function Login() {
               </div>
               <div className="align-center justify-center flex">
                 {" "}
-                <img src="./screen.svg"></img>
+                <img src="./screen.svg" alt="screen"></img>
               </div>
             </div>
             <div className="mt-8 space-y-6" method="">

@@ -1,4 +1,3 @@
-import { FaClipboardList } from "react-icons/fa";
 export default function EmptyState() {
   return (
     <>

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
 
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";

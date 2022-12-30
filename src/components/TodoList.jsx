@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 import EmptyState from "./EmptyState";
 import { db } from "../firebase/firebase";
-import { getAuth } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 
