@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import {
   addDoc,
@@ -37,16 +38,18 @@ export const deleteTodo = async (id) => {
 
 const auth = getAuth();
 
-export const register = async (email, password) => {
+export const register = async (email, password, userName) => {
   try {
-    const { user } = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
+    await createUserWithEmailAndPassword(auth, email, password).then(
+      async (res) => {
+        await updateProfile(auth.currentUser, {
+          displayName: userName,
+        });
+      }
     );
-    return user;
+    alert("Registered Successfully");
   } catch (e) {
-    console.log(e.message);
+    alert(e.message);
   }
 };
 export const login = async (email, password) => {
