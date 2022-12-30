@@ -32,7 +32,7 @@ export default function Register() {
               </div>
               <div className="align-center justify-center flex">
                 {" "}
-                <img src="./screen.svg"></img>
+                <img src="./screen.svg" alt="screen"></img>
               </div>
             </div>
             <div className="mt-8 space-y-6" method="">
@@ -118,7 +118,7 @@ export default function Register() {
         Already have an account?{" "}
         <button
           className="text-[#D8605B] font-bold pl-2"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/")}
         >
           Login
         </button>

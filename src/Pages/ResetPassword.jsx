@@ -1,7 +1,6 @@
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -18,8 +17,7 @@ export default function ResetPassword() {
       });
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      alert(error.message);
       // ..
     });
   return (
@@ -33,7 +31,7 @@ export default function ResetPassword() {
         </div>
         <div className="align-center justify-center flex">
           {" "}
-          <img src="./screen.svg"></img>
+          <img src="./screen.svg" alt="screen"></img>
         </div>
       </div>
       <form className="flex w-full h-full mobile:w-full  max-w-[600px]  flex-col justify-center  items-center">
@@ -59,7 +57,7 @@ export default function ResetPassword() {
             Already have an account?{" "}
             <button
               className="text-[#D8605B] font-bold pl-2"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Login
             </button>

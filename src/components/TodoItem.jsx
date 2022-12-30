@@ -1,12 +1,11 @@
 import React, { useState, useRef } from "react";
-// import { useDispatch } from "react-redux";
-// import { removeTodo } from "../store/todoSlicer";
+
 import { TiEdit, TiTrash } from "react-icons/ti";
 import { FaCheckCircle } from "react-icons/fa";
 import { openModal } from "../store/modalSlicer";
 import { useDispatch } from "react-redux";
 import { setTodoId } from "../store/todoSlicer";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 function TodoItem({ todo, handleEdit, toggleComplete }) {
   const [newTitle, setNewTitle] = useState(todo.content);
