@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
+import EmptyState from "./EmptyState";
 import { db } from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 
 import {
   onSnapshot,
@@ -11,20 +13,26 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 
 function TodoList() {
   const [todoList, setTodoList] = useState([]);
-  const auth = getAuth();
 
-  const user = auth.currentUser;
+  const { user } = useSelector((state) => {
+    return state.auth;
+  });
+  console.log(todoList);
 
   useEffect(() => {
-    onSnapshot(collection(db, "Todos"), (querySnapshot) => {
+    const q = query(collection(db, "Todos"), where("userId", "==", user.uid));
+
+    onSnapshot(q, (querySnapshot) => {
       const rawData = [];
       console.log(rawData);
       querySnapshot.forEach((doc) => {
-        const cardData = { ...doc.data(), id: doc.id, uid: doc.uid };
+        const cardData = { ...doc.data(), id: doc.id };
         rawData.push(cardData);
       });
       console.log(rawData);
@@ -70,23 +78,27 @@ function TodoList() {
   };
 
   return (
-    <ul className="bg-gray-200 flex-col  py-4 flex w-[80%]  max-w-[600px]  ">
-      <ToastContainer />
-      {todoList?.map((todo) => {
-        if (user.uid === todo.userId)
-          return (
-            <TodoItem
-              key={todo.id}
-              id={todo.id}
-              content={todo.content}
-              todo={todo}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-              toggleComplete={toggleComplete}
-            />
-          );
-      })}
-    </ul>
+    <>
+      {todoList.length > 0 ? (
+        <ul className=" flex-col  py-4 flex w-[80%]  max-w-[600px] mobile:w-full  ">
+          {todoList?.map((todo) => {
+            return (
+              <TodoItem
+                key={todo.id}
+                id={todo.id}
+                content={todo.content}
+                todo={todo}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+                toggleComplete={toggleComplete}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <EmptyState />
+      )}
+    </>
   );
 }
 export default TodoList;

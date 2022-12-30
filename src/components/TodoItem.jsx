@@ -54,7 +54,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
   return (
     <>
       <li className=" hover:scale-110 flex flex-col wrap  w-full  py-1 px-1 mb-4 justify-between space-x-2  rounded drop-shadow-xl ">
-        <div className="flex flex-row wrap  w-full  py-1 px-1 justify-between space-x-2  bg-white rounded  ">
+        <div className="flex flex-row wrap  w-full mobile:w-full  py-1 px-1 justify-between space-x-2  bg-white rounded  ">
           {" "}
           <div className="flex flex-row justify-between">
             {" "}
@@ -80,7 +80,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
               ></input>
             </div>
           </div>
-          <div className="flex flex-row space-x-4 sm:space-x-1">
+          <div className="flex flex-row space-x-4 mobile:space-x-3">
             {" "}
             <div className="flex flex-end ">
               <button
@@ -89,12 +89,13 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
                   openRemoveModal();
                 }}
               >
-                <TiTrash style={{ color: "red" }} />
+                <TiTrash size={22} style={{ color: "red" }} />
               </button>
             </div>
             <div>
               <button className=" rounded justify-center flex align-center p-1 hover:bg-slate-400 hover:rounded">
                 <TiEdit
+                  size={22}
                   style={{ color: "blue" }}
                   onClick={(e) => {
                     inputRef.current?.focus();
@@ -108,7 +109,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
                 className="hover:bg-slate-400 hover:rounded flex align-center p-1 "
                 onClick={handleEditAction}
               >
-                <FaCheckCircle style={{ color: "green" }} />
+                <FaCheckCircle size={22} style={{ color: "green" }} />
               </button>
             </div>
           </div>

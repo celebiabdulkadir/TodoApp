@@ -1,10 +1,15 @@
 import { login } from "../firebase/firebase";
 import { useState } from "react";
+
 import { useDispatch } from "react-redux";
 import { login as loginHandler } from "../store/authSlicer";
 import { useNavigate } from "react-router-dom";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
 
 export default function Login() {
+  const auth = getAuth();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const submitHandle = async (event) => {
@@ -12,9 +17,11 @@ export default function Login() {
     const user = await login(email, password);
     console.log(user);
     dispatch(loginHandler(user));
-    navigate("/todo", {
-      replace: true,
-    });
+    if (user) {
+      navigate("/todo", {
+        replace: true,
+      });
+    }
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,12 +29,19 @@ export default function Login() {
   return (
     <>
       <form onSubmit={submitHandle}>
-        <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="flex min-h-full items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md space-y-8">
             <div>
-              <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Log in to your account
-              </h2>
+              <div>
+                {" "}
+                <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900">
+                  Welcome to Todo App
+                </h1>
+              </div>
+              <div className="align-center justify-center flex">
+                {" "}
+                <img src="./screen.svg"></img>
+              </div>
             </div>
             <div className="mt-8 space-y-6" method="">
               <input type="hidden" name="remember" value="true" />
@@ -69,23 +83,8 @@ export default function Login() {
               <div>
                 <button
                   type="submit"
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="group relative flex w-full justify-center rounded-md border border-transparent  bg-[#D8605B] py-2 px-4 text-sm font-medium text-white hover:bg-[#b84c48] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <svg
-                      className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
                   Login
                 </button>
               </div>
@@ -93,6 +92,25 @@ export default function Login() {
           </div>
         </div>
       </form>
+      <div className="flex justify-center">
+        <button
+          className="text-center"
+          onClick={() => navigate("/resetPassword")}
+        >
+          Forgot Password
+        </button>
+      </div>
+      <div className="text-center py-4">
+        Don't have an account?{" "}
+        <button
+          className="text-[#D8605B] font-bold pl-2"
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Register
+        </button>
+      </div>
     </>
   );
 }
