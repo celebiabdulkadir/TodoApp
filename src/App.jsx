@@ -19,17 +19,14 @@ function App() {
   const [popOver, setPopOver] = useState(false);
   const ref = useRef(null);
   const { user } = useSelector((state) => {
-    console.log(state.auth);
     return state.auth;
   });
   const { modalOpen } = useSelector((state) => {
-    console.log(state.auth);
     return state.modal;
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const setPopOverMenu = () => {
-    console.log(popOver);
     setPopOver(!popOver);
   };
 
