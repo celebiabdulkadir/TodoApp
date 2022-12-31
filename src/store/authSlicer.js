@@ -9,6 +9,8 @@ const authSlicer = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
+      localStorage.removeItem("user");
+
       localStorage.setItem("user", JSON.stringify(action.payload));
       state.user = action.payload;
     },
