@@ -41,7 +41,7 @@ export default function Login() {
             </div>
             <div className="mt-8 space-y-6" method="">
               <input type="hidden" name="remember" value="true" />
-              <div className="-space-y-px rounded-md shadow-sm">
+              <div className="space-y-4 rounded-md shadow-sm">
                 <div>
                   <label htmlFor="email-address" className="sr-only">
                     Email address
