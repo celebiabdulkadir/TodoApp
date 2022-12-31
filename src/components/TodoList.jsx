@@ -22,19 +22,18 @@ function TodoList() {
   const { user } = useSelector((state) => {
     return state.auth;
   });
-  console.log(todoList);
 
   useEffect(() => {
     const q = query(collection(db, "Todos"), where("userId", "==", user.uid));
 
     onSnapshot(q, (querySnapshot) => {
       const rawData = [];
-      console.log(rawData);
+
       querySnapshot.forEach((doc) => {
         const cardData = { ...doc.data(), id: doc.id };
         rawData.push(cardData);
       });
-      console.log(rawData);
+
       setTodoList(
         rawData.sort(function (a, b) {
           return new Date(b.date) - new Date(a.date);
@@ -43,8 +42,8 @@ function TodoList() {
     });
   }, []);
 
-  const toggleComplete = async (todo) => {
-    await updateDoc(doc(db, "Todos", todo.id), { completed: !todo.completed });
+  const toggleComplete = async (todo, completed) => {
+    await updateDoc(doc(db, "Todos", todo.id), { completed: completed });
   };
 
   const handleEdit = async (todo, content) => {
@@ -86,6 +85,7 @@ function TodoList() {
                 key={todo.id}
                 id={todo.id}
                 content={todo.content}
+                completed={todo.completed}
                 todo={todo}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}

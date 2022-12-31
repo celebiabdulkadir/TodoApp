@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { TiEdit, TiTrash } from "react-icons/ti";
 import { FaCheckCircle } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 function TodoItem({ todo, handleEdit, toggleComplete }) {
   const [newTitle, setNewTitle] = useState(todo.content);
+  const [isChecked, setIsChecked] = useState(todo.completed);
   const inputRef = useRef();
   const dispatch = useDispatch();
 
@@ -39,6 +40,28 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
       });
     }
   };
+  // useEffect(() => {
+  //   if (todo.completed) {
+  //     return setIsChecked(true);
+  //   } else {
+  //     return setIsChecked(false);
+  //   }
+  // }, [isChecked]);
+  const handleCheckChange = (event) => {
+    if (event.target.checked) {
+      toggleComplete(todo, isChecked);
+
+      console.log("✅ Checkbox is checked");
+    } else {
+      setIsChecked(false);
+      toggleComplete(todo, isChecked);
+      console.log("⛔️ Checkbox is NOT checked");
+    }
+    setIsChecked((current) => !current);
+  };
+  // const toggleEditAction = (todo) => {
+  //   toggleComplete(todo);
+  // };
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -62,8 +85,10 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
                 type="checkbox"
                 id="topping"
                 name="topping"
+                value={isChecked}
+                defaultChecked={isChecked}
+                onChange={handleCheckChange}
                 className="flex justify-center align-center bg-white"
-                onClick={() => toggleComplete(todo)}
               />
             </div>
             <div className="flex flex-start p-1 ">

@@ -14,9 +14,7 @@ export default function Login() {
     console.log(user);
     dispatch(loginHandler(user));
     if (user) {
-      navigate("/todo", {
-        replace: true,
-      });
+      navigate("/todo");
     }
   };
   const [email, setEmail] = useState("");
