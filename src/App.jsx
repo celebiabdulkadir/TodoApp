@@ -91,7 +91,7 @@ function App() {
                 {popOver && (
                   <div
                     ref={ref}
-                    className="absolute z-10 right-0 top-16   mobile:right-0 mobile:top-0 mobile:left-0 inline-block w-56  mobile:w-full mobile:h-1/3  text-sm font-light items-center align-middle text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm mr-4  "
+                    className="absolute z-10 right-0 top-16   mobile:right-0 mobile:top-0 mobile:left-0 inline-block w-56  mobile:w-full   text-sm font-light items-center align-middle text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm mr-4  "
                   >
                     <div className="p-3 flex flex-col break-all text-center justify-center items-center align-middle">
                       <div className="flex items-center justify-between mb-2">

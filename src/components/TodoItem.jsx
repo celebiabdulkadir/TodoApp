@@ -52,7 +52,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
 
   return (
     <>
-      <li className=" hover:scale-110 flex flex-col wrap  w-full  py-1 px-1 mb-4 justify-between space-x-2  rounded drop-shadow-xl ">
+      <li className=" desktop:hover:scale-110 flex flex-col wrap  w-full  py-1 px-1 mb-4 justify-between space-x-2  rounded drop-shadow-xl ">
         <div className="flex flex-row wrap  w-full mobile:w-full  py-1 px-1 justify-between space-x-2  bg-white rounded  ">
           {" "}
           <div className="flex flex-row justify-between">
@@ -79,7 +79,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
               ></input>
             </div>
           </div>
-          <div className="flex flex-row space-x-4 mobile:space-x-3">
+          <div className="flex flex-row space-x-4 mobile:space-x-2 pr-1">
             {" "}
             <div className="flex flex-end ">
               <button

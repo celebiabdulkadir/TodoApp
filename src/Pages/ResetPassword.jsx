@@ -7,19 +7,24 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   const auth = getAuth();
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      alert("Password reset email sent!");
-      // Password reset email sent!
-      // ..
-      navigate("/login", {
-        replace: true,
+  const submitReset = (event) => {
+    event.preventDefault();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent!");
+
+        // Password reset email sent!
+        // ..
+        navigate("/login", {
+          replace: true,
+        });
+      })
+      .catch((error) => {
+        alert(error.message);
+        // ..
       });
-    })
-    .catch((error) => {
-      alert(error.message);
-      // ..
-    });
+  };
+
   return (
     <div className="flex w-full h-full mobile:w-full mt-[10%]   flex-col justify-center align-middle  items-center px-2">
       <div>
@@ -34,7 +39,10 @@ export default function ResetPassword() {
           <img src="./screen.svg" alt="screen"></img>
         </div>
       </div>
-      <form className="flex w-full h-full mobile:w-full  max-w-[600px]  flex-col justify-center  items-center">
+      <form
+        onSubmit={submitReset}
+        className="flex w-full h-full mobile:w-full  max-w-[600px]  flex-col justify-center  items-center"
+      >
         <input
           onChange={(event) => {
             setEmail(event.target.value);
@@ -53,17 +61,17 @@ export default function ResetPassword() {
           >
             Reset
           </button>
-          <div className="text-center py-4 ">
-            Already have an account?{" "}
-            <button
-              className="text-[#D8605B] font-bold pl-2"
-              onClick={() => navigate("/")}
-            >
-              Login
-            </button>
-          </div>
         </div>
       </form>
+      <div className="text-center py-4 ">
+        Already have an account?{" "}
+        <button
+          className="text-[#D8605B] font-bold pl-2"
+          onClick={() => navigate("/")}
+        >
+          Login
+        </button>
+      </div>
     </div>
   );
 }
