@@ -39,6 +39,9 @@ function App() {
     if (user === undefined) {
       return localStorage.removeItem("user");
     }
+    if (user) {
+      navigate("/todo");
+    }
 
     document.addEventListener("click", handleClickOutside, true);
     return () => {
