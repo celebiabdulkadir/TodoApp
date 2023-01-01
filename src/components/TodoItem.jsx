@@ -40,13 +40,7 @@ function TodoItem({ todo, completed, handleEdit, toggleComplete }) {
       });
     }
   };
-  // useEffect(() => {
-  //   if (todo.completed) {
-  //     return setIsChecked(true);
-  //   } else {
-  //     return setIsChecked(false);
-  //   }
-  // }, [isChecked]);
+
   const handleCheckChange = (event) => {
     if (event.target.checked) {
       toggleComplete(todo);
@@ -58,9 +52,6 @@ function TodoItem({ todo, completed, handleEdit, toggleComplete }) {
     }
     setIsChecked((current) => !current);
   };
-  // const toggleEditAction = (todo) => {
-  //   toggleComplete(todo);
-  // };
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -96,7 +87,7 @@ function TodoItem({ todo, completed, handleEdit, toggleComplete }) {
                 style={{ textDecoration: todo.completed && "line-through" }}
                 type="text"
                 value={todo.content === "" ? newTitle : todo.content}
-                className="list"
+                className="list desktop:w-96"
                 onChange={handleChange}
                 onKeyUp={HandleKeyUp}
                 ref={inputRef}

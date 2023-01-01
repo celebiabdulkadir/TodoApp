@@ -13,8 +13,6 @@ export default function ResetPassword() {
       .then(() => {
         alert("Password reset email sent!");
 
-        // Password reset email sent!
-        // ..
         navigate("/login", {
           replace: true,
         });
