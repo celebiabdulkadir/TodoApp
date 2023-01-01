@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setTodoId } from "../store/todoSlicer";
 import { toast } from "react-toastify";
 
-function TodoItem({ todo, handleEdit, toggleComplete }) {
+function TodoItem({ todo, completed, handleEdit, toggleComplete }) {
   const [newTitle, setNewTitle] = useState(todo.content);
   const [isChecked, setIsChecked] = useState(todo.completed);
   const inputRef = useRef();
@@ -49,12 +49,11 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
   // }, [isChecked]);
   const handleCheckChange = (event) => {
     if (event.target.checked) {
-      toggleComplete(todo, isChecked);
+      toggleComplete(todo);
 
       console.log("✅ Checkbox is checked");
     } else {
-      setIsChecked(false);
-      toggleComplete(todo, isChecked);
+      toggleComplete(todo);
       console.log("⛔️ Checkbox is NOT checked");
     }
     setIsChecked((current) => !current);
