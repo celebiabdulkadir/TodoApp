@@ -16,11 +16,11 @@ This is a real time todo app which was created with react.js. You can add, updat
 
 ## Project tools
 
-React
-React-router
-Redux
-Firebase auth
-Firestore db
+- React
+- React-router
+- Redux
+- Firebase auth
+- Firestore db
 
 In the project directory, you can run:
 
