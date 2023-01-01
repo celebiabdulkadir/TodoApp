@@ -8,7 +8,10 @@ This is a real time todo app which was created with react.js. You can add, updat
 2. Then, you can login with your "email" and "password". If you forget your password, you can reset your password from the reset page.
 3. After you logged in, you can use the todo app .
 4. Now, you can write your first todo, press the add button, or press the "Enter" key.
-5. For editing your todos, click on the todo text field or  click edit  icon , then write your new todo, and finally press the "Enter" key or "✅" button
+5. For editing your todos, click on the todo text field or  click edit  icon , then write your new todo, and finally press the "Enter" key or "✅" button.
+6. In order to delete todo, click "delete" button.
+7. If you completed todo, you can mark as "completed" by click check box "checked"  on left hand.
+8. If you want to logout, click to profile button and click "logout".
 
 
 
