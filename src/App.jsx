@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
@@ -18,6 +18,7 @@ import ResetPassword from "./Pages/ResetPassword";
 function App() {
   const [popOver, setPopOver] = useState(false);
   const ref = useRef(null);
+  let location = useLocation();
   const { user } = useSelector((state) => {
     return state.auth;
   });
@@ -40,9 +41,8 @@ function App() {
       return localStorage.removeItem("user");
     }
     if (user) {
-      navigate("/todo");
+      navigate("/todo", { replace: true });
     }
-
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
@@ -58,7 +58,7 @@ function App() {
     <>
       {modalOpen && <Modal />}
       <div className="flex-flex-col  ">
-        {user && (
+        {user && location.pathname === "/todo" && (
           <nav className="flex flex-end justify-between mobile:justify-end   py-4 mobile:py-2 px-12 mobile:px-4">
             <>
               <div className="flex mobile:hidden cursor-pointer flex-row justify-center align-middle items-center space-x-4 text-xl">
@@ -73,7 +73,7 @@ function App() {
               </div>
             </>
 
-            {user && (
+            {
               <div>
                 <button
                   onClick={setPopOverMenu}
@@ -125,7 +125,7 @@ function App() {
                   </div>
                 )}
               </div>
-            )}
+            }
           </nav>
         )}
         <hr></hr>

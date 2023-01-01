@@ -1,5 +1,3 @@
-// import EmailComp from "../components/EmailComp";
-// import PasswordComp from "../components/PasswordComp";
 import { useState } from "react";
 import { register } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
