@@ -42,8 +42,8 @@ function TodoList() {
     });
   }, []);
 
-  const toggleComplete = async (todo, completed) => {
-    await updateDoc(doc(db, "Todos", todo.id), { completed: completed });
+  const toggleComplete = async (todo) => {
+    await updateDoc(doc(db, "Todos", todo.id), { completed: !todo.completed });
   };
 
   const handleEdit = async (todo, content) => {
