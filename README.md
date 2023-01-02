@@ -1,6 +1,6 @@
 # Todo App
 
-This is a real time todo app which was created with react.js. You can add, update and delete your task instantly
+This is a real time todo app which was created with react.js. You can add, update and delete your task instantly. This app is fully responsive and you can experience on Chrome, Safari and Firefox browsers.
 
 
 ## You can experience live
