@@ -14,7 +14,7 @@ export default function Register() {
 		userName: yup
 			.string()
 			.trim('No leading/trailing whitepaces allowed')
-			.required('Email is required'),
+			.required('User Name is required'),
 		email: yup
 			.string()
 			.trim('No leading/trailing whitepaces allowed')
