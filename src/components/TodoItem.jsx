@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,6 +8,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { openModal } from '../store/modalSlicer';
 import { setTodoId } from '../store/todoSlicer';
 import Spinner from './Spinner';
+
 function TodoItem({ todo, handleEdit, toggleComplete }) {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
 		handleSubmit,
 		watch,
 		setValue,
+		setFocus,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
@@ -64,9 +66,12 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
 
 	const onSubmit = handleSubmit(handleUpdate);
 
+	const handleEditClick = () => {
+		setFocus('newTitle');
+	};
+
 	return (
 		<>
-			{' '}
 			{loading && <Spinner />}
 			<form
 				onSubmit={onSubmit}
@@ -83,6 +88,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
 						</div>
 						<div className='flex flex-start p-1 '>
 							<input
+								// Set the ref for the input element
 								{...register('newTitle')}
 								style={{ textDecoration: isChecked && 'line-through' }}
 								className='list desktop:w-96'
@@ -103,6 +109,7 @@ function TodoItem({ todo, handleEdit, toggleComplete }) {
 							<button
 								type='button'
 								className='rounded justify-center flex align-center p-1 hover:bg-slate-400 hover:rounded'
+								onClick={handleEditClick}
 							>
 								<TiEdit size={22} style={{ color: 'blue' }} />
 							</button>
